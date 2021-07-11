@@ -211,57 +211,59 @@ $(".team-list__top").click(e => {
 
 
  let player;
- const playerContainer = $(".player");
+//  const playerContainer = $(".player");
  
- let eventsInit = () => {
-     $(".player__start").click(e => {
-         e.preventDefault();
+//  let eventsInit = () => {
+//      $(".player__start").click(e => {
+//          e.preventDefault();
  
-         if(playerContainer.hasClass("paused")) {
-             playerContainer.removeClass("paused");
-             player.pauseVideo();
-         } else {
-             playerContainer.addClass("paused");
-             player.playVideo();
-         }
+//          if(playerContainer.hasClass("paused")) {
+//              playerContainer.removeClass("paused");
+//              player.pauseVideo();
+//          } else {
+//              playerContainer.addClass("paused");
+//              player.playVideo();
+//          }
  
-     });
- };
+//      });
+//  };
  
- const formatTime = timeSec => {
-     const roundTime = Math.round(timeSec);
+//  const formatTime = timeSec => {
+//      const roundTime = Math.round(timeSec);
  
-     const minutes = addZero(Math.floor(roundTime / 60));
-     const seconds = addZero(roundTime - minutes * 60);
+//      const minutes = addZero(Math.floor(roundTime / 60));
+//      const seconds = addZero(roundTime - minutes * 60);
  
-     function addZero(num) {
-         return num < 10 ? `0${num}` : num;
-     }; 
+//      function addZero(num) {
+//          return num < 10 ? `0${num}` : num;
+//      }; 
  
-     return `${minutes} : ${seconds}`;
- }
+//      return `${minutes} : ${seconds}`;
+//  }
  
  
- const onPlayerReady = () => {
-     let interval;
-     const durationSec = player.getDuration();
+//  const onPlayerReady = () => {
+//      let interval;
+//      const durationSec = player.getDuration();
  
-     $(".player__duration-estimate").text(formatTime(durationSec));
+//      $(".player__duration-estimate").text(formatTime(durationSec));
  
-     if(typeof interval !== "undefined") {
-         clearInterval(interval);
-     };
+//      if(typeof interval !== "undefined") {
+//          clearInterval(interval);
+//      };
      
-     interval = setInterval(() => {
-         const completedSec = player.getСurrentTime();
-         const completedPercent = (completedSec / durationSec) * 100;
-         $(".player__playback-button").css({
-             left: `${completedPercent}%`
-         });
+//      interval = setInterval(() => {
+//          const completedSec = player.getСurrentTime();
+
+//          const completedPercent = (completedSec / durationSec) * 100;
+
+//          $(".player__playback-button").css({
+//              left: `${completedPercent}%`
+//          });
  
-         $(".player__duration-completed").text(formatTime(completedSec));
-     }, 1000);
- };
+//          $(".player__duration-completed").text(formatTime(completedSec))
+//      }, 1000);
+//  };
  
        function onYouTubeIframeAPIReady() {
          player = new YT.Player('yt-player', {
@@ -312,7 +314,7 @@ function validate(element) {
 
     if (element.value.length < 1) {
         element.nextElementSibling.classList.add("form__error--active");
-        element.nextElementSibling.textContent = "Заполните это поле! будте любезны";
+        element.nextElementSibling.textContent = "Заполните это поле!";
         element.style.border = "3px solid red";
         return false;
     } else if (element.value.length < minlength) {
@@ -321,7 +323,7 @@ function validate(element) {
         element.style.border = "3px solid red";
         return false;    
     } else {
-        element.nextElementSibling.textContent = "";
+        element.nextElementSibling.textContent = "Оставте впечатления";
         element.nextElementSibling.classList.remove("form__error--active");
         element.style.border = "3px solid transparent";
         return true;
@@ -334,18 +336,19 @@ submitButton.addEventListener("click", function(e) {
     if (validateForm(form)) {
         alert("Форма валидна, отправляем на сервер!");
     }
+
+})
+
+
+$(".form").submit(e => {
+    e.preventDefault();
+
+
+    $.fancybox.open({
+        src: "#modal",
+        type: "inline"
+    });
 });
-
-
-// $(".form").submit(e => {
-//     e.preventDefault();
-
-
-//     $.fancybox.open({
-//         src: "#modal",
-//         type: "inline"
-//     });
-// });
 
 
 //////////////////////////////////////////////////////////map/////////////////////////////////////////////////////////
@@ -373,11 +376,13 @@ const init = () => {
     });
 
     coords.forEach(coord => {
-        myCollection.add(new ymaps.placemark(coord));
+        myCollection.add(new ymaps.Placemark(coord));
     });
 
-    myMap.GeoObjects.add(myCollection);
-}
+    myMap.geoObjects.add(myCollection);
+
+    myMap.behaviors.disable('scrollZoom');
+};
 
 ymaps.ready(init);
 

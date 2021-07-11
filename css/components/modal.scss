@@ -28,10 +28,11 @@
 
 .modal__container {
     background: #fff;
-    padding: 35px 60px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    // margin: auto;
 }
 
 .modal__content {
@@ -48,4 +49,8 @@
     position: relative;
     text-align: left;
 }
+
+// .modal__button-container {
+//     // position: absolute;
+// }
 
