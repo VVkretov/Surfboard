@@ -1,0 +1,17 @@
+.section {
+    height: 100vh;
+    min-height: rem(650px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #292929;
+    background: #fff;
+}
+
+.section__title {
+    font-size: rem(48px);
+    font-weight: 700;
+    margin-bottom: rem(30px);
+    text-align: center;
+    text-transform: uppercase;
+}

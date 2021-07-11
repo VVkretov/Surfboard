@@ -1,0 +1,19 @@
+.icon {
+    display: flex;
+    align-items: center;
+    margin-left: rem(55px);
+
+    @include tablets {
+        display: none;
+    }
+}
+
+.icon__picture {
+    margin-right: rem(20px);
+}
+
+.icon__text {
+    font-size: rem(16px);
+    max-width: rem(70px);
+    font-weight: 700;
+}

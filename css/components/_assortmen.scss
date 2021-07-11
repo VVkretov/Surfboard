@@ -1,0 +1,164 @@
+.assortmen {
+    background-color: #F8FAF9;
+}
+
+.assorttmen__controls {
+    position: relative;
+}
+
+.assorttmen__control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height:rem(40px) ;
+    width:rem(15px) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+        @include tablets {
+            top: 29%;
+        }
+
+        @include phones {
+            top: 26%;
+        }
+}
+
+.assorttmen__control-left {
+    left: 0;
+
+    @include tablets {
+        left: 0;
+    }
+
+    @include phones {
+        left: 0%;
+    }
+}
+
+.assorttmen__control-rigth {
+    right: 0;
+
+        @include phones {
+            right: 1%;
+        }
+}
+
+.assortmen__slider {
+    overflow: hidden;
+}
+
+.assortment__list {
+    display: flex;
+    will-change: right;
+    transition: right 0.3s;
+    position: relative;
+}
+
+.assortment__item {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    width: 100%;
+
+        @include tablets {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: rem(50px);
+        }
+}
+
+.assortmen__photo {
+    flex-shrink: 0;
+    width: 36%;
+
+        @include tablets {
+            width: 44%;
+        }
+
+        @include phones {
+            width: 55%;
+        }
+}
+
+.assortmen__content {
+    width: 57%;
+    
+        @include tablets {
+            align-items: center;
+            width: 72.5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @include phones {
+            width: 90%;
+        }
+}
+
+.assortmen__composition {
+margin-bottom: rem(52px);
+}
+
+.assortmen__title {
+    font-size: rem(36px);
+    margin-bottom: rem(24px);
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+.assortmen__text {
+    color: #666;
+    margin-bottom: rem(24px);
+    line-height: 1.2;
+    width: rem(361px);
+
+        @include tablets {
+            width: rem(494px);
+            text-align: center;
+        }
+
+        @include phones {
+            width: rem(337px);
+            text-align: center;
+        }
+}
+
+.assortmen__params {
+    display: flex;
+    line-height: 1.2;
+    margin-bottom: rem(24px);
+}
+
+.assortmen__parametr {
+    margin-right: rem(52px);
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.assortmen__key {
+    color: #666;
+}
+
+.assortmen__value {
+    font-weight: 700;
+}
+
+.assortmen__footer {
+    display: flex;
+    align-items: center;
+}
+
+.assortmen__price {
+    font-size: rem(60px);
+    line-height: 1;
+    margin-right: rem(60px);
+        &:last-child{
+            margin-right: 0;
+        } 
+}

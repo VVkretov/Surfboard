@@ -1,0 +1,51 @@
+$containerWidth: 1100px;
+$baseFontSize: 18px;
+$z-fixed-menu:100;
+
+$tablets: 768px;
+$phones: 480px;
+$forms:902px;
+$arrows:1100px;
+
+@import "media";
+
+@import url("./normalize.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+
+@import "layout";
+
+@import "../components/_header";
+@import "../components/icons";
+@import "../components/icon";
+@import "../components/hello";
+@import "../components/buttom";
+@import "../components/section";
+@import "../components/preview-section";
+@import "../components/headline";
+@import "../components/benefits";
+@import "../components/benefit";
+@import "../components/reviews.scss";
+@import "../components/interactive-avatar";
+@import "../components/order-section";
+@import "../components/form";
+@import "../components/radio";
+@import "../components/fixed-menu";
+@import "../components/hamburger";
+@import "../components/map-section";
+@import "../components/footer";
+@import "../components/sprite.scss";
+@import "../components/contacts";
+@import "../components/icons-social";
+@import "../components/icon-svg";
+@import "../components/icon-image";
+@import "../components/assortmen";
+@import "../components/assortmen-composition";
+@import "../components/overlay.scss";
+@import "../components/fulscreen-menu";
+@import "../components/team.scss";
+@import "../components/modal.scss";
+@import "../components/socials";
+@import "../components/player";
+@import "../components/map.scss";

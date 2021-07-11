@@ -1,0 +1,56 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+
+    @include tablets {
+        display: none;
+    }
+
+    &:hover {
+        color:#FEDB3F;
+    }
+
+}
+
+.contacts__address {
+    font-size: rem(21px);
+    font-weight: 400;
+    line-height: rem(24px);
+
+}
+
+.contacts-elem {
+    @include tablets {
+        display: flex;
+    }
+}
+
+.contacts__phone {
+    margin-right: rem(70px);
+    font-size: rem(22px);
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    white-space: nowrap;
+    fill: #000;
+
+    &--icon-elem {
+        width: rem(12px);
+        height: rem(12px);
+        margin-right: rem(6px);
+    }
+
+    @include phones {
+        justify-content: center;
+        margin-right: rem(0px);
+    }
+
+    &:hover {
+        fill: #FFD517;
+    }
+}
+
+.contacts__phone--icon-elem {
+    flex-shrink: 0;
+}
+

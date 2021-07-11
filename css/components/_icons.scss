@@ -1,0 +1,15 @@
+.icons {
+    margin-bottom: rem(55px);
+}
+
+
+.icons__list {
+    display: flex;
+    margin-left: rem(22px);
+}
+
+.icons__item {
+    &:hover {
+        fill: #FFD517;
+    }
+}

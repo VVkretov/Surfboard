@@ -1,0 +1,21 @@
+
+.socials__list {
+    display: flex;
+    margin-right: rem(-14px);
+}
+
+.socials__item {
+    margin-right: rem(14px);
+
+    &:last-child {
+        margin-right: rem(0px);
+    }
+}
+
+.socials__item-link {
+    fill: #B3B3B3;
+
+    &:hover {
+        fill: #000;
+    }
+}
