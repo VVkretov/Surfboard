@@ -1,0 +1,64 @@
+.products-menu-section {
+    background: url(../../img/serf.jpeg) center center/cover no-repeat;
+    position: relative;
+    color: #fff;
+    height: 100%;
+}
+
+.products-menu-section__title {
+    top: rem(100px);
+    left: rem(15px);
+    position: absolute;
+}
+
+.products-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.products-menu__item {
+    display: flex;
+}
+
+.products-menu__title {
+    position: relative;
+    width: rem(100px);
+}
+
+.products-menu__image {
+    object-fit: cover;
+    min-height: 100%;
+}
+
+.products-menu__text {
+    position: absolute;
+    bottom: rem(95px);
+    transform: rotate( 270deg);
+    font-size: rem(48px);
+    right: rem(-50px);
+    font-weight: 700;
+
+}
+
+.products-menu__content {
+    background: rgba(51, 53, 55, 0.9);
+    width: 0;
+    position: relative;
+    overflow: hidden;
+    transition: width .7s;
+}
+
+.products-menu__container {
+    padding: rem(40px) rem(73px) rem(45px) rem(26px);
+}
+
+.products-menu__close {
+    position: absolute;
+    top: rem(20px);
+    right: rem(25px);
+    border: none;
+    background: transparent;
+}

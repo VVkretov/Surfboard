@@ -11,9 +11,9 @@
     <title>Surboard</title>
 </head>
 <body class="body">
-    <div class="wrapper">
-        <div class="wrapper__content">
-                <section class=" section preview-section">
+    <div class="wrapper">        
+        <div class="main-content">
+                <section data-sidemenu-theme="white" data-section-id="prewiew" class=" section preview-section">
                     <header class="header header-blue">
                         <div class="container header__container">
                             <div class="header__content">
@@ -25,25 +25,25 @@
                                 <nav class="menu">
                                     <ul class="menu__list">
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">О нас</a>
+                                            <a href="#" data-scroll-to="benefits" class="menu__link">О нас</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Серфборды</a>
+                                            <a href="#" data-scroll-to="assortmen" class="menu__link">Серфборды</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Команда</a>
+                                            <a href="#" data-scroll-to="team" class="menu__link">Команда</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Меню</a>
+                                            <a href="#" data-scroll-to="products" class="menu__link">Меню</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Отзывы</a>
+                                            <a href="#" data-scroll-to="reviews" class="menu__link">Отзывы</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Как мы работаем</a>
+                                            <a href="#" data-scroll-to="player" class="menu__link">Как мы работаем</a>
                                         </li>
                                         <li class="menu__item">
-                                            <a href="#" class="menu__link">Контакты</a>
+                                            <a href="#" data-scroll-to="map" class="menu__link">Контакты</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -104,9 +104,8 @@
                             </ul>
                         </div>
                     </div>
-                </section>    
-            <div class="main-content">
-                <section class="section benefits-section">
+                </section>
+                <section data-sidemenu-theme="black" data-section-id="benefits" class="section benefits-section">
                     <div class="container">
                         <div class="headline">
                             <h2 class="section__title headline__title">ПОЧЕМУ SURFBOARD?</h2>
@@ -161,7 +160,7 @@
                         </ul>
                     </div>
                 </section>
-                <section class="section assortmen">
+                <section data-sidemenu-theme="black" data-section-id="assortmen" class="section assortmen">
                     <div class="container container-center">
                         <div class="assortmen__controls">
                             <a href="#" id="sliderLeft" class="assorttmen__control assorttmen__control-left">
@@ -327,7 +326,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="section team">
+                <section data-sidemenu-theme="white" data-section-id="team" class="section team">
                     <div class="container team__container">
                         <h2 class="team__title">КОМАНДА</h2>
                         <ul class="team-list team__list">
@@ -520,7 +519,52 @@
                         </ul>
                     </div>
                 </section>
-                <section class="section reviews-section">
+                <section data-sidemenu-theme="white" data-section-id="products" class="section products-menu-section">
+                    <h1 class="section__title products-menu-section__title">Меню</h1>
+                    <ul class="products-menu">
+                        <li class="products-menu__item">
+                            <a href="#" class="products-menu__title">
+                                <img src="./img/serf2.jpeg" alt="mainWave" class="products-menu__image">
+                                <div class="products-menu__text">Лонгборды</div>
+                            </a>
+                            <div class="products-menu__content">
+                                <div class="products-menu__container">
+                                    <button class="products-menu__close"></button>
+                                    <div class="products-menu__content-text">Устойчивая доска для новичков. На них легко лежать, сидеть, грести, разгребаться на волны и ехать. Размер и плавучесть доски позволяет брать очень маленькие и пологие волны и не спеша, не прилагая особых усилий ехать по ним.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="products-menu__item">
+                            <a href="#" class="products-menu__title">
+                                <img src="./img/serf3.jpeg" alt="mainWave3" class="products-menu__image">
+                                <div class="products-menu__text">Шортборды</div>
+                            </a>
+                            <div class="products-menu__content">
+                                <div class="products-menu__container">
+                                    <button class="products-menu__close"></button>
+                                    <div class="products-menu__content-text">Устойчивая доска для новичков. На них легко лежать, сидеть, грести, разгребаться на волны и ехать. Размер и плавучесть доски позволяет брать очень маленькие и пологие волны и не спеша, не прилагая особых усилий ехать по ним.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="products-menu__item">
+                            <a href="#" class="products-menu__title">
+                                <img src="./img/serf4.jpeg" alt="mainWave4" class="products-menu__image">
+                                <div class="products-menu__text">Софттопы</div>
+                            </a>
+                            <div class="products-menu__content">
+                                <div class="products-menu__container">
+                                    <button class="products-menu__close"></button>
+                                    <div class="products-menu__content-text">Устойчивая доска для новичков. На них легко лежать, сидеть, грести, разгребаться на волны и ехать. Размер и плавучесть доски позволяет брать очень маленькие и пологие волны и не спеша, не прилагая особых усилий ехать по ним.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+                <section data-sidemenu-theme="black" data-section-id="reviews" class="section reviews-section">
                     <div class="container">
                         <h2 class="section__title">Отзывы</h2>
                         <div class="reviews">
@@ -604,7 +648,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="section player-section">
+                <section data-sidemenu-theme="black" data-section-id="player" class="section player-section">
                     <div class="container">
                         <h2 class="section__title">
                             как мы работаем
@@ -629,7 +673,7 @@
                         </div>
                     </div>    
                 </section>
-                <section class="section order-section">
+                <section data-sidemenu-theme="white" data-section-id="order" class="section order-section">
                     <div class="container">
                         <h2 class="section__title">закажите доску</h2>
                         <form class="form" id="myForm">
@@ -706,7 +750,7 @@
                         </form>
                     </div>
                 </section>              
-                <section class="section map-section">
+                <section data-sidemenu-theme="black" data-section-id="map" class="section map-section">
                     <div id="map" class="map"></div>
                         <footer class="footer">
                             <div class="container footer__container">
@@ -752,37 +796,36 @@
                             </div>
                         </footer>
                 </section>
-            </div>
         </div>
     </div>
     <nav class="fixed-menu">
         <ul class="fixed-menu__list">
             <li class=" fixed-menu__item fixed-menu__item--active">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="prewiew" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="benefits" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="assortmen" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="team" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="products" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="reviews" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="player" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="order" class="fixed-menu__link"></a>
             </li>
             <li class="fixed-menu__item">
-                <a href="#" class="fixed-menu__link"></a>
+                <a href="#"  data-scroll-to="map" class="fixed-menu__link"></a>
             </li>
         </ul>
     </nav>

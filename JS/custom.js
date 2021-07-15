@@ -131,7 +131,7 @@ buttomLeft.addEventListener("click", e => {
     }
 });
 
-//////////////////////////////////////////////////////////open/////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////team/////////////////////////////////////////////////////////
 
 
 const openItem = item => {
@@ -257,9 +257,9 @@ const onPlayerReady = () => {
         player.playVideo();
         // const completedPercent = (completedSec / durationSec) * 100;
 
-//         $(".player__playback-button").css({
-//             left: `${completedPercent}%`
-//         });
+        // $(".player__playback-button").css({
+        //     left: `${completedPercent}%`
+        // });
  
         $(".player__duration-completed").text(formatTime(completedSec));
     }, 1000);
@@ -387,3 +387,202 @@ const init = () => {
 ymaps.ready(init);
 
 
+//////////////////////////////////////////////////////menu-section/////////////////////////////////
+
+const mesureWidth = item => {
+    let regItemWidth = 0;
+
+    const screenWidth = $(window).width();
+    const container = item.closest(".products-menu");
+    const titlesBlocks = container.find(".products-menu__title");
+    const titlesWidth = titlesBlocks.width() * titlesBlocks.length;
+
+    const textContainer = item.find(".products-menu__container");
+    const paddingLeft = parseInt( textContainer.css("padding-left"));
+    const paddingRig = parseInt( textContainer.css("padding-right"));
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+        regItemWidth = screenWidth - titlesWidth;
+    } else {
+        regItemWidth = 520;
+    };
+
+    return {
+        container: regItemWidth,
+        textContainer: regItemWidth - paddingLeft - paddingRig
+    };
+};
+
+const closeEveryItemContainer = container => {
+    const items = container.find(".products-menu__item");
+    const content = container.find(".products-menu__content");
+
+    items.removeClass("active");
+    content.width(0);
+}
+
+const openItems = item => {
+
+    const hiddenContent = item.find(".products-menu__content");
+    const regWidth = mesureWidth(item);
+    const textBlock = item.find(".products-menu__container");
+     
+    item.addClass("active");
+    hiddenContent.width(regWidth.container);
+    textBlock.width(regWidth.textContainer);
+};
+
+$(".products-menu__title").on("click", e => {
+ e.preventDefault();
+
+ const $this = $(e.currentTarget);
+ const item = $this.closest(".products-menu__item");
+ const itemOpened = item.hasClass("active");
+ const container = $this.closest(".products-menu");
+
+ if (itemOpened) {
+    closeEveryItemContainer(container);
+ } else {
+    closeEveryItemContainer(container);
+    openItems(item);
+    
+
+ }
+});
+
+$(".products-menu__content").on("click", e => {
+    e.preventDefault();
+
+    closeEveryItemContainer($(".products-menu"));
+
+});
+
+
+//////////////////////////////////////////////////////ops/////////////////////////////
+
+
+const sections = $("section");
+const display = $(".main-content");
+const sideMenu = $(".fixed-menu");
+const menuItemss = sideMenu.find(".fixed-menu__item");
+
+let inScroll = false;
+
+sections.first().addClass("active");
+
+const countSectionPosition = (sectionEq) => {
+    const position = sectionEq * -100;
+    
+    if (isNaN(position)) {
+        console.error("передано неверное значение в countSectionPosition");
+        return 0;
+    }
+
+    return position;
+}
+
+const changeMenuThemeForSection = (sectionEq) => {
+    const currentSection = sections.eq(sectionEq);
+    const menuTheme = currentSection.attr("data-sidemenu-theme");
+    const activeClass = "fixed-menu--shadowed";
+    
+
+    if (menuTheme == "black") {
+        sideMenu.addClass("activeClass");
+    } else {
+        sideMenu.removeClass("activeClass");
+    }
+};
+
+const resetActiveClassForItem = (items, itemEq, activeClass) => {
+    items.eq(itemEq).addClass(activeClass).siblings().removeClass(activeClass);
+}
+
+const perfomTransition = sectionEq => {
+    if (inScroll) return;
+
+    const transitionOver = 1000;
+    const mouseInertiaOver = 300;    
+
+    inScroll = true;
+
+    const position = countSectionPosition(sectionEq);
+
+    changeMenuThemeForSection(sectionEq);    
+
+    display.css({
+        transform: `translateY(${position}%)`
+    });
+
+    resetActiveClassForItem(sections, sectionEq, "active");
+
+    setTimeout(() => {
+        inScroll = false;
+
+        resetActiveClassForItem(menuItemss, sectionEq, "fixed-menu__item--active");
+
+    }, transitionOver + mouseInertiaOver);
+};
+
+const ViewportScroller = () => {
+    const activeSection = sections.filter(".active");
+    const nextSection = activeSection.next();
+    const prevSection = activeSection.prev();
+
+    return {
+        next() {
+            if (nextSection.length) {
+                perfomTransition(nextSection.index());
+            }
+        },
+        prev() {
+            if (prevSection.length) {
+                perfomTransition(prevSection.index());
+            }
+        },
+    };
+};
+
+$(window).on("wheel", e => {
+    const deltaY = e.originalEvent.deltaY;
+    const scroller = ViewportScroller();
+    
+
+    if (deltaY > 0) { 
+        scroller.next();
+    }
+
+    if (deltaY < 0) {
+        scroller.prev();
+    }
+});
+
+$(window).on("keydown", e => {
+    const tagName = e.target.tagName.toLowerCase();
+    const userTypingInInputs = tagName == "input" || tagName == "textarea"
+    const scroller = ViewportScroller();
+
+    if (userTypingInInputs) return;
+
+    switch (e.keyCode) {
+        case 38:
+            scroller.prev();
+            break;
+    
+        case 40:
+            scroller.next();
+            break;
+    }  
+});
+
+$("[data-scroll-to]").click(e => {
+    e.preventDefault();
+
+    const $this = $(e.currentTarget);
+    const target = $this.attr("data-scroll-to");
+    const reqSection = $(`[data-section-id=${target}]`);
+
+    perfomTransition(reqSection.index());
+});
