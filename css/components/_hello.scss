@@ -29,6 +29,10 @@
     line-height: 1.2;
     margin-bottom: rem(21px);
     text-transform: uppercase;
+
+    @include phones {
+       text-transform: none; 
+    }
 }
 
 .hello__text {

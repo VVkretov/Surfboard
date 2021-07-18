@@ -294,54 +294,70 @@ const submitButton = document.querySelector("#sendForm");
 
 
 
-function validateForm (form) {
-    let valid = true;
+// function validateForm (form) {
+//     let valid = true;
 
-    if (!validate(form.elements.name)) {
-        valid = false;
-    }
-    if (!validate(form.elements.nomber)) {
-        valid = false;
-    }
-    if (!validate(form.elements.comment)) {
-        valid = false;
-    }
-    return valid;
-}
+//     if (!validate(form.elements.name)) {
+//         valid = false;
+//     }
+//     if (!validate(form.elements.nomber)) {
+//         valid = false;
+//     }
+//     if (!validate(form.elements.comment)) {
+//         valid = false;
+//     }
+//     return valid;
+// }
 
-function validate(element) {
-    const minlength = parseInt(element.getAttribute("minlength"));
+// function validate(element) {
+//     const minlength = parseInt(element.getAttribute("minlength"));
 
-    if (element.value.length < 1) {
-        element.nextElementSibling.classList.add("form__error--active");
-        element.nextElementSibling.textContent = "Заполните это поле!";
-        element.style.border = "3px solid red";
-        return false;
-    } else if (element.value.length < minlength) {
-        element.nextElementSibling.classList.add("form__error--active");
-        element.nextElementSibling.textContent = "маловато символов бро";
-        element.style.border = "3px solid red";
-        return false;    
-    } else {
-        element.nextElementSibling.textContent = "Оставте впечатления";
-        element.nextElementSibling.classList.remove("form__error--active");
-        element.style.border = "3px solid transparent";
-        return true;
-    }
+//     if (element.value.length < 1) {
+//         element.nextElementSibling.classList.add("form__error--active");
+//         element.nextElementSibling.textContent = "Заполните это поле!";
+//         element.style.border = "3px solid red";
+//         return false;
+//     } else if (element.value.length < minlength) {
+//         element.nextElementSibling.classList.add("form__error--active");
+//         element.nextElementSibling.textContent = "маловато символов бро";
+//         element.style.border = "3px solid red";
+//         return false;    
+//     } else {
+//         element.nextElementSibling.textContent = "Оставте впечатления";
+//         element.nextElementSibling.classList.remove("form__error--active");
+//         element.style.border = "3px solid transparent";
+//         return true;
+//     }
 
-}
+// }
 
-submitButton.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (validateForm(form)) {
-        alert("Форма валидна, отправляем на сервер!");
-    }
-
-})
+// submitButton.addEventListener("click", function(e) {
+//     e.preventDefault();
+//     if (validateForm(form)) {
+//         alert("Форма валидна, отправляем на сервер!");
+//     }
+// });
 
 
 $(".form").submit(e => {
     e.preventDefault();
+
+    const form = $(e.currentTarget);
+    const name = form.find("[name= 'name']");
+    const nomber = form.find("[name= 'nomber']");
+    const comment = form.find("[name= 'comment']");
+    const to = form.find("[name= 'to']");
+
+    $.ajax({
+        url: "https://webdev-api.loftschool.com/sendmail",
+        method: "post",
+        data: {
+            name: name.val(),
+            nomber: nomber.val(),
+            comment: comment.val(),
+            to: to.val(),
+        }
+    });
 
 
     $.fancybox.open({
@@ -349,6 +365,12 @@ $(".form").submit(e => {
         type: "inline"
     });
 });
+
+$(".app-close-modal").click(e => {
+    e.preventDefault();
+
+    $.fancybox.close();
+})
 
 
 //////////////////////////////////////////////////////////map/////////////////////////////////////////////////////////
@@ -468,6 +490,9 @@ const display = $(".main-content");
 const sideMenu = $(".fixed-menu");
 const menuItemss = sideMenu.find(".fixed-menu__item");
 
+const mobileDetect = new MobileDetect(window.navigator.userAgent);
+const isMobiles = mobileDetect.mobile();
+
 let inScroll = false;
 
 sections.first().addClass("active");
@@ -490,9 +515,9 @@ const changeMenuThemeForSection = (sectionEq) => {
     
 
     if (menuTheme == "black") {
-        sideMenu.addClass("activeClass");
+        sideMenu.addClass(activeClass);
     } else {
-        sideMenu.removeClass("activeClass");
+        sideMenu.removeClass(activeClass);
     }
 };
 
@@ -577,6 +602,8 @@ $(window).on("keydown", e => {
     }  
 });
 
+$(".wrapper").on("touchmove", e => e.preventDefault());
+
 $("[data-scroll-to]").click(e => {
     e.preventDefault();
 
@@ -586,3 +613,18 @@ $("[data-scroll-to]").click(e => {
 
     perfomTransition(reqSection.index());
 });
+
+if (isMobiles) {
+    //https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
+    $("body").swipe({
+    swipe: function(event, direction) {
+        const scroller = ViewportScroller();
+        let scrollDirection = "";
+
+        if (direction == "up") scrollDirection = "next";
+        if (direction == "down") scrollDirection = "prev";
+        
+        scroller[scrollDirection]();
+    },
+  });
+};
