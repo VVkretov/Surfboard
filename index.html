@@ -676,7 +676,8 @@
                 <section data-sidemenu-theme="white" data-section-id="order" class="section order-section">
                     <div class="container">
                         <h2 class="section__title">закажите доску</h2>
-                        <form class="form" id="myForm">
+                        <form class="form" id="myForm" action="server.php" method="POST">
+                            <!-- <input type="hidden" name="to" value="somewhere@mail.com"> -->
                             <div class="form__col">
                                 <div class="form__row">
                                     <label class="form__block">
@@ -686,32 +687,32 @@
                                     </label>
                                     <label class="form__block">
                                         <div class="form__title">Телефон</div>
-                                        <input type="text" class="form__input" name="nomber" minlength="3" maxlength="10" required>
+                                        <input type="text" class="form__input" name="phone" minlength="3" maxlength="11" required>
                                         <div class="form__error"></div>
                                     </label>
                                 </div>
                                 <div class="form__row">
                                     <label class="form__block">
                                         <div class="form__title">Улица</div>
-                                        <input type="text" class="form__input" name="street">
+                                        <input type="text" class="form__input" name="street" >
                                     </label>
                                 </div>
                                 <div class="form__row">
                                     <label class="form__block">
                                         <div class="form__title">Дом</div>
-                                        <input type="text" class="form__input" name="house">
+                                        <input type="text" class="form__input" name="home" >
                                     </label>
                                     <label class="form__block">
                                         <div class="form__title">Корпус</div>
-                                        <input type="text" class="form__input">
+                                        <input type="text" class="form__input" name="shape">
                                     </label>
                                     <label class="form__block">
                                         <div class="form__title">Квартира</div>
-                                        <input type="text" class="form__input">
+                                        <input type="text" class="form__input" name="flat">
                                     </label>
                                     <label class="form__block">
                                         <div class="form__title">Этаж</div>
-                                        <input type="text" class="form__input">
+                                        <input type="text" class="form__input" name="floor">
                                     </label>
                                 </div>
                             </div>
@@ -719,25 +720,25 @@
                                 <div class="form__row">
                                     <label class="form__block">
                                         <div class="form__title">Комментарий</div>
-                                        <textarea class="form__input form__input-textarea" name="comment" minlength="3" maxlength="10" required></textarea>
+                                        <textarea class="form__input form__input-textarea" name="comment" minlength="3" maxlength="100" required></textarea>
                                         <div class="form__error"></div>
                                     </label>
                                 </div>
                                 <div class="form__controls" id="payment">
-                                    <label class="radio" name="cash">
-                                        <input type="radio" name="option" class="radio__elem">
+                                    <label class="radio">
+                                        <input type="radio"  class="radio__elem" name="radio">
                                         <div class="radio__visible"></div>
                                         <div class="radio__title">Оплата наличными</div>
                                     </label>
-                                    <label class="radio" name="card">
-                                        <input type="radio" name="option" class="radio__elem">
+                                    <label class="radio">
+                                        <input type="radio" class="radio__elem" name="radio">
                                         <div class="radio__visible"></div>
                                         <div class="radio__title">Оплата картой</div>
                                     </label>
                                 </div>
                                 <div class="form__controls">
                                     <label class="radio radio-checkbox">
-                                        <input type="checkbox" class="radio__elem" name="call">
+                                        <input type="checkbox" class="radio__elem" name="checkbox">
                                         <div class="radio__visible"></div>
                                         <div class="radio__title">Не перезванивать</div>
                                     </label>
@@ -872,10 +873,11 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchSwipe/1.6.18/jquery.touchSwipe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
+    <script src="./JS/jquery.validate.min.js"></script>
     <script src="./JS/custom.js"></script>
 </body>
 </html> 

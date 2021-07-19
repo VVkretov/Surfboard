@@ -730,6 +730,9 @@ img {
   border-color: #FEDB3F;
   outline: none;
 }
+.form__input.error {
+  background: red;
+}
 
 .form__controls {
   display: -webkit-box;
@@ -829,8 +832,11 @@ img {
   }
 }
 
-.fixed-menu--shadowed {
-  color: black;
+.fixed-menu--shadowed .fixed-menu__item .fixed-menu__link::before {
+  background: #000;
+}
+.fixed-menu--shadowed .fixed-menu__item--active .fixed-menu__link {
+  border-color: #000;
 }
 
 .fixed-menu__item {
@@ -1791,12 +1797,13 @@ img {
 
 .products-menu__text {
   position: absolute;
-  bottom: 5.2777777778rem;
+  bottom: 2.277778rem;
   -webkit-transform: rotate(270deg);
           transform: rotate(270deg);
   font-size: 2.6666666667rem;
-  right: -2.7777777778rem;
+  right: 0.222222rem;
   font-weight: 700;
+  left: 0;
 }
 
 .products-menu__content {

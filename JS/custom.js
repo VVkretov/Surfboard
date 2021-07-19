@@ -289,8 +289,8 @@ eventsInit();
 
 //////////////////////////////////////////////////////////forma///////////////////////////////////////////////////////// 
 
-const form = document.querySelector("#myForm");
-const submitButton = document.querySelector("#sendForm");
+// const form = document.querySelector("#myForm");
+// const submitButton = document.querySelector("#sendForm");
 
 
 
@@ -338,31 +338,79 @@ const submitButton = document.querySelector("#sendForm");
 //     }
 // });
 
+// const validateFields = (form, fieldsArray) => {
+//     fieldsArray.forEach(field => {
+//         field.removeClass("input-error");
 
-$(".form").submit(e => {
-    e.preventDefault();
+//         if(field.val().trim() == "") {
+//             field.addClass("input-error");
+//         }
+//     });
 
-    const form = $(e.currentTarget);
-    const name = form.find("[name= 'name']");
-    const nomber = form.find("[name= 'nomber']");
-    const comment = form.find("[name= 'comment']");
-    const to = form.find("[name= 'to']");
+//     const errorFields = form.find(".input-error");
+
+//     return errorFields.length == 0;
+// }
+
+
+/*Скрипт отправки данных с формы на сервер*/
+$("#myForm").submit(function() {
+
+    const form = $(this);
 
     $.ajax({
-        url: "https://webdev-api.loftschool.com/sendmail",
-        method: "post",
-        data: {
-            name: name.val(),
-            nomber: nomber.val(),
-            comment: comment.val(),
-            to: to.val(),
+        type: "POST",
+        url: "server.php",
+        data: form.serialize(),
+    }).done(function() {
+        console.log('done');
+    })
+    return false;
+
+
+    // $.fancybox.open({
+    //     src: "#modal",
+    //     type: "inline"
+    // });
+});
+
+//validate form script
+$(function(){
+    $('#myForm').validate({
+        rules: {
+            name: {
+                required: true
+            },
+            phone: {
+                required: true,
+                digits: true
+            }
+        },
+        focusCleanup: true,
+		focusInvalid: false,
+		submitHandler: function (form) {
+
+			var form = $('#myForm');
+			$.fancybox.open({
+				src: '#modal',
+				type: 'inline',
+				afterClose: function () {
+					form.trigger("reset");
+				}
+			});
+			
+		},
+
+        // invalidHandler: function(event, validator){
+        //     $('.js-message').text('Пожалуйста заполните необходимые поля')
+        // },
+        // onkeyup: function(element) {
+		// 	$('.js-message').text('')
+			
+        // },
+        errorPlacement: function(error, element) {
+            return true
         }
-    });
-
-
-    $.fancybox.open({
-        src: "#modal",
-        type: "inline"
     });
 });
 
@@ -370,7 +418,9 @@ $(".app-close-modal").click(e => {
     e.preventDefault();
 
     $.fancybox.close();
-})
+});
+
+/*END Скрипт отправки данных с формы на сервер*/
 
 
 //////////////////////////////////////////////////////////map/////////////////////////////////////////////////////////
