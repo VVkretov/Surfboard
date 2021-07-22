@@ -217,14 +217,29 @@ let eventsInit = () => {
     $(".player__start").click(e => {
         e.preventDefault();
 
-        if(playerContainer.hasClass("paused")) {
-            playerContainer.removeClass("paused");
+        if (playerContainer.hasClass("paused")) {
             player.pauseVideo();
         } else {
-            playerContainer.addClass("paused");
             player.playVideo();
         }
- 
+    });
+
+    $(".player__playback").click(e => {
+        const bar = $(e.currentTarget);
+        const clickedPosition = e.originalEvent.layerX;
+        const newButtonPositionPercent = (clickedPosition / bar.width()) * 100;
+        const newPlaybackPositionSec = (player.getDuration() / 100) * newButtonPositionPercent;
+
+        $(".player__playback-button").css({
+            left: `${newButtonPosition}%`
+        });
+
+        player.seekTo(newPlaybackPositionSec); 
+        
+    });
+
+    $(".player__splash").click(e => {
+        player.playVideo();
     });
 };
  
@@ -248,22 +263,42 @@ const onPlayerReady = () => {
  
     $(".player__duration-estimate").text(formatTime(durationSec));
  
-    if(typeof interval !== "undefined") {
+    if (typeof interval !== 'undefined') {
         clearInterval(interval);
     };
      
     interval = setInterval(() => {
         const completedSec = player.getСurrentTime();
-        player.playVideo();
-        // const completedPercent = (completedSec / durationSec) * 100;
+        const completedPercent = (completedSec / durationSec) * 100;
 
-        // $(".player__playback-button").css({
-        //     left: `${completedPercent}%`
-        // });
+        $(".player__playback-button").css({
+            left: `${completedPercent}%`
+        });
  
         $(".player__duration-completed").text(formatTime(completedSec));
     }, 1000);
 };
+
+const onPlayerStateChange = event => {
+    /*
+        -1 (воспроизведение видео не начато)
+        0 (воспроизведение видео завершено)
+        1 (воспроизведение)
+        2 (пауза)
+        3 (буферизация)
+        5 (видео подают реплики)
+        */
+    switch (event.data) {
+        case 1:
+            playerContainer.addClass("active");
+            playerContainer.addClass("paused");
+            break;
+        case 2:
+            playerContainer.removeClass("active");
+            playerContainer.removeClass("paused");
+            break;
+    }
+}
  
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt-player', {
@@ -272,7 +307,7 @@ function onYouTubeIframeAPIReady() {
     videoId: 'FmzHq3U0UFE',
     events: {
     onReady: onPlayerReady,
-     // 'onStateChange': onPlayerStateChange
+     'onStateChange': onPlayerStateChange
     },
     playerVars: {
         controls: 0,
