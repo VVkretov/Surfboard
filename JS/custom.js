@@ -210,118 +210,6 @@ $(".team-list__top").click(e => {
  //////////////////////////////////////////////////////////player///////////////////////////////////////////////////////// 
 
 
-// let player;
-// const playerContainer = $(".player");
- 
-// let eventsInit = () => {
-//     $(".player__start").click(e => {
-//         e.preventDefault();
-
-//         if (playerContainer.hasClass("paused")) {
-//             player.pauseVideo();
-//         } else {
-//             player.playVideo();
-//         }
-//     });
-
-//     $(".player__playback").click(e => {
-//         const bar = $(e.currentTarget);
-//         const clickedPosition = e.originalEvent.layerX;
-//         const newButtonPositionPercent = (clickedPosition / bar.width()) * 100;
-//         const newPlaybackPositionSec = (player.getDuration() / 100) * newButtonPositionPercent;
-
-//         $(".player__playback-button").css({
-//             left: `${newButtonPosition}%`
-//         });
-
-//         player.seekTo(newPlaybackPositionSec); 
-        
-//     });
-
-//     $(".player__splash").click(e => {
-//         player.playVideo();
-//     });
-// };
- 
-// const formatTime = timeSec => {
-//     const roundTime = Math.round(timeSec);
- 
-//     const minutes = addZero(Math.floor(roundTime / 60));
-//     const seconds = addZero(roundTime - minutes * 60);
- 
-//     function addZero(num) {
-//         return num < 10 ? `0${num}` : num;
-//     };  
- 
-//     return `${minutes} : ${seconds}`;
-// };
- 
- 
-// const onPlayerReady = () => { 
-//     let interval;
-//     const durationSec = player.getDuration();
- 
-//     $(".player__duration-estimate").text(formatTime(durationSec));
- 
-//     if (typeof interval !== 'undefined') {
-//         clearInterval(interval);
-//     };
-     
-//     interval = setInterval(() => {
-//         const completedSec = player.getСurrentTime();
-//         const completedPercent = (completedSec / durationSec) * 100;
-
-//         $(".player__playback-button").css({
-//             left: `${completedPercent}%`
-//         });
- 
-//         $(".player__duration-completed").text(formatTime(completedSec));
-//     }, 1000);
-// };
-
-// const onPlayerStateChange = event => {
-//     /*
-//         -1 (воспроизведение видео не начато)
-//         0 (воспроизведение видео завершено)
-//         1 (воспроизведение)
-//         2 (пауза)
-//         3 (буферизация)
-//         5 (видео подают реплики)
-//         */
-//     switch (event.data) {
-//         case 1:
-//             playerContainer.addClass("active");
-//             playerContainer.addClass("paused");
-//             break;
-//         case 2:
-//             playerContainer.removeClass("active");
-//             playerContainer.removeClass("paused");
-//             break;
-//     }
-// }
- 
-// function onYouTubeIframeAPIReady() {
-//     player = new YT.Player('yt-player', {
-//     height: '390',
-//     width: '660',
-//     videoId: 'FmzHq3U0UFE',
-//     events: {
-//     onReady: onPlayerReady,
-//      'onStateChange': onPlayerStateChange
-//     },
-//     playerVars: {
-//         controls: 0,
-//         disablekd: 0,
-//         showinfo: 0,
-//         rel: 0,
-//         autoplay: 0,
-//         modestbranding: 0,
-//     }
-//     });
-// };
-    
-// eventsInit();
-
 let player;
 const playerContainer = $(".player");
  
@@ -414,7 +302,7 @@ const onPlayerStateChange = event => {
  
 function onYouTubeIframeAPIReady() {
  player = new YT.Player("yt-player", {
-   height: "405",
+   height: "390",
    width: "660",
    videoId: "LXb3EKWsInQ",
    events: {
@@ -612,9 +500,12 @@ const mesureWidth = item => {
     let regItemWidth = 0;
 
     const screenWidth = $(window).width();
+
     const container = item.closest(".products-menu");
     const titlesBlocks = container.find(".products-menu__title");
     const titlesWidth = titlesBlocks.width() * titlesBlocks.length;
+    
+ 
 
     const textContainer = item.find(".products-menu__container");
     const paddingLeft = parseInt( textContainer.css("padding-left"));
@@ -623,7 +514,7 @@ const mesureWidth = item => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     if (isMobile) {
-        regItemWidth = screenWidth - titlesWidth;
+        regItemWidth = screenWidth - titlesBlocks.width(); //(screenWidth - titlesWidth)
     } else {
         regItemWidth = 520;
     };
@@ -638,16 +529,18 @@ const closeEveryItemContainer = container => {
     const items = container.find(".products-menu__item");
     const content = container.find(".products-menu__content");
 
+    container.removeClass("active");
     items.removeClass("active");
     content.width(0);
 }
 
-const openItems = item => {
+const openItems = (item, container) => {
 
     const hiddenContent = item.find(".products-menu__content");
     const regWidth = mesureWidth(item);
     const textBlock = item.find(".products-menu__container");
      
+    container.addClass("active");
     item.addClass("active");
     hiddenContent.width(regWidth.container);
     textBlock.width(regWidth.textContainer);
@@ -658,6 +551,7 @@ $(".products-menu__title").on("click", e => {
 
  const $this = $(e.currentTarget);
  const item = $this.closest(".products-menu__item");
+
  const itemOpened = item.hasClass("active");
  const container = $this.closest(".products-menu");
 
@@ -665,7 +559,7 @@ $(".products-menu__title").on("click", e => {
     closeEveryItemContainer(container);
  } else {
     closeEveryItemContainer(container);
-    openItems(item);
+    openItems(item, container);
     
 
  }
@@ -812,16 +706,17 @@ $("[data-scroll-to]").click(e => {
 });
 
 if (isMobiles) {
-    //https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
-    $("body").swipe({
-    swipe: function(event, direction) {
-        const scroller = ViewportScroller();
-        let scrollDirection = "";
+    // https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
+   
+        $("body").swipe({
+            swipe: function(event, direction) {
+            const scroller = ViewportScroller();
+            let scrollDirection = "";
 
-        if (direction == "up") scrollDirection = "next";
-        if (direction == "down") scrollDirection = "prev";
-        
-        scroller[scrollDirection]();
-    },
-  });
+            if (direction == "up") scrollDirection = "next";
+            if (direction == "down") scrollDirection = "prev";
+            
+            scroller[scrollDirection]();
+        },
+    });
 };

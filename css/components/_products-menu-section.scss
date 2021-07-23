@@ -9,6 +9,9 @@
     top: rem(100px);
     left: rem(15px);
     position: absolute;
+    @include phones {
+        font-size: rem(32px);
+    }
 }
 
 .products-menu {
@@ -19,13 +22,38 @@
     display: flex;
 }
 
+@include phones {
+    .products-menu.active {
+        right: unset;
+        left: 0;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+
 .products-menu__item {
     display: flex;
+
 }
+
+@include phones {
+    .products-menu__item.active {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
 
 .products-menu__title {
     position: relative;
     width: rem(100px);
+    @include phones {
+        width: 4.355556rem;
+    }
 }
 
 .products-menu__image {
@@ -41,6 +69,7 @@
     right: 0.222222rem;
     font-weight: 700;
     left: 0;
+
 }
 
 .products-menu__content {
