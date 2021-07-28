@@ -12,10 +12,6 @@
         align-items: center;
         text-align: center;
         padding: 0;
-
-            &:before {
-                content: url("../../img/arnaud-mesureur-17OxKyThYPo-unsplash 1 (1).png") center top rem(0px) no-repeat;
-            }
     }
 
     @include phones {
