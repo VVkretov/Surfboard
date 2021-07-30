@@ -265,10 +265,8 @@ img {
     text-align: center;
     padding: 0;
   }
-  .hello__content:before {
-    content: url("../../img/arnaud-mesureur-17OxKyThYPo-unsplash 1 (1).png") center top 0rem no-repeat;
-  }
 }
+
 .hello__title {
   font-size: 2.6666666667rem;
   font-weight: 700;
@@ -1307,12 +1305,12 @@ img {
   height: 1.7777777778rem;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  margin-right: 12px;
+  margin-right: 0.6666666667rem;
 }
 
 .assortmen-composition__title {
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.7777777778rem;
+  line-height: 0.9444444444rem;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -1409,7 +1407,7 @@ img {
   text-align: center;
   font-size: 48px;
   font-weight: 700;
-  margin-bottom: 50px;
+  margin-bottom: 2.7777777778rem;
 }
 
 .team__list {
@@ -1461,9 +1459,9 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 20px;
-  width: 220px;
-  height: 290px;
+  margin-left: 1.1111111111rem;
+  width: 12.2222222222rem;
+  height: 16.1111111111rem;
 }
 .team-list__item:first-child {
   margin-left: 0;
@@ -1474,7 +1472,7 @@ img {
         -ms-flex: 1;
             flex: 1;
     margin-left: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0.8333333333rem;
   }
   .team-list__item:last-child {
     margin-bottom: 0;
@@ -1482,7 +1480,7 @@ img {
 }
 
 .team-list__avatar {
-  margin-bottom: 20px;
+  margin-bottom: 1.1111111111rem;
 }
 
 .team-list__top {
@@ -1508,18 +1506,18 @@ img {
 
 .team-list__bottom--active {
   text-align: center;
-  height: 75px;
+  height: 4.1666666667rem;
 }
 
 .team-list__text {
-  font-size: 21px;
+  font-size: 1.1666666667rem;
   font-weight: 700;
 }
 
 .team-list__open-svg {
-  width: 9px;
-  height: 9px;
-  margin-left: 4px;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 0.2222222222rem;
   -webkit-transition: all linear 0.3s;
   transition: all linear 0.3s;
 }
@@ -1564,7 +1562,7 @@ img {
 
 .modal__container {
   background: #fff;
-  padding: 20px;
+  padding: 1.1111111111rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1578,7 +1576,7 @@ img {
 }
 
 .modal__content {
-  margin-bottom: 15px;
+  margin-bottom: 0.8333333333rem;
   color: #000;
 }
 
@@ -1587,7 +1585,7 @@ img {
   margin: 0;
   max-width: 100%;
   overflow: auto;
-  padding: 44px;
+  padding: 2.4444444444rem;
   position: relative;
   text-align: left;
 }
@@ -1645,8 +1643,8 @@ img {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  width: 660px;
-  height: 390px;
+  width: 36.6666666667rem;
+  height: 21.6666666667rem;
   cursor: pointer;
 }
 
@@ -1676,7 +1674,7 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 35px;
+  height: 1.9444444444rem;
   background: #000;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1687,7 +1685,7 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 25px;
+  padding: 0 1.3888888889rem;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
@@ -1704,28 +1702,28 @@ img {
   width: 0;
   height: 0;
   flex-shrink: 0;
-  border: 11px solid transparent;
+  border: 0.6111111111rem solid transparent;
   border-right-width: 0;
   background: transparent;
   outline: 0;
   border-left-color: #fff;
 }
 .player__start.active {
-  border: 7px solid #626262;
-  height: 20px;
+  border: 0.3888888889rem solid #626262;
+  height: 1.1111111111rem;
   border-top: 0;
   border-bottom: 0;
-  padding: 1px;
+  padding: 0.0555555556rem;
 }
 
 .player__playback {
   position: relative;
-  width: 446px;
-  height: 16px;
+  width: 24.7777777778rem;
+  height: 0.8888888889rem;
 }
 .player__playback::before {
   content: "";
-  height: 4px;
+  height: 0.2222222222rem;
   position: absolute;
   top: 50%;
   left: 0;
@@ -1737,8 +1735,8 @@ img {
 }
 
 .player__playback-button {
-  width: 12px;
-  height: 12px;
+  width: 0.6666666667rem;
+  height: 0.6666666667rem;
   border-radius: 50%;
   background: #626262;
   border: none;

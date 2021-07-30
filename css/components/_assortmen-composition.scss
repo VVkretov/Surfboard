@@ -59,12 +59,12 @@
     width: rem(32px);
     height: rem(32px);
     flex-shrink: 0;
-    margin-right: 12px;
+    margin-right: rem(12px);
 }
 
 .assortmen-composition__title {
-    font-size: 14px;
-    line-height: 17px;
+    font-size: rem(14px);
+    line-height: rem(17px);
     text-transform: uppercase;
     font-weight: bold;
 }

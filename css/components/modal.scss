@@ -28,15 +28,14 @@
 
 .modal__container {
     background: #fff;
-    padding: 20px;
+    padding: rem(20px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin: auto;
 }
 
 .modal__content {
-    margin-bottom: 15px;
+    margin-bottom: rem(15px);
     color: #000;
 }
 
@@ -45,12 +44,8 @@
     margin: 0;
     max-width: 100%;
     overflow: auto;
-    padding: 44px;
+    padding: rem(44px);
     position: relative;
     text-align: left;
 }
-
-// .modal__button-container {
-//     // position: absolute;
-// }
 

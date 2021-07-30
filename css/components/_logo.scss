@@ -1,0 +1,18 @@
+.logo {
+    margin-left: rem(73px);
+
+        @include tablets {
+            margin-top: rem(20px);
+            margin-left: rem(15px);
+        }
+}
+
+.logo-icons {
+    width: rem(55px);
+    height: rem(35px);
+    fill: #fff;
+
+        &:hover {
+            fill: #FEDB3F;
+        } 
+}
